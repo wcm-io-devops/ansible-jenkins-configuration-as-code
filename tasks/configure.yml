@@ -1,4 +1,4 @@
-- name: "jcasc_configure : check if '{{ jenkins_casc_config_path }}' exists."
+- name: "configure : check if '{{ jenkins_casc_config_path }}' exists."
   stat:
     path: "{{ jenkins_casc_config_path }}"
   register: jenkins_casc_config_path_result
@@ -8,7 +8,7 @@
     msg: "No file or directory found with path '{{ jenkins_casc_config_path }}'. Ensure that the configuration is on the instance before calling this role."
   when: jenkins_casc_config_path_result.stat.exists == false
 
-- name: "jcasc_configure : configure jcasc plugin"
+- name: "configure : configure jcasc plugin and apply configuration."
   jenkins_script:
     script: "{{ lookup('file', 'files/groovy/jcasc/configure.groovy') }}"
     user: "{{ jenkins_casc_admin_username }}"
@@ -17,7 +17,17 @@
     args:
       jcasc_path: "{{ jenkins_casc_config_path }}"
   register: _jenkins_casc_plugin_configure_result
-  changed_when: _jenkins_casc_plugin_configure_result.output | regex_replace('^Result:\\s*(.*)\\n*$', '\\1') | bool
-  # TODO: only reload when necessary, config may apply config to - check!
-  #notify:
-  #- wcm_io_devops.jenkins_configuration_as_code reload
+  failed_when:
+  changed_when: (_jenkins_casc_plugin_configure_result.output | regex_replace('^Result:\\s*(.*)\\n*$', '\\1') | from_json).changed
+
+- name: "configure : set _jenkins_casc_plugin_configure_result fact."
+  set_fact:
+    _jenkins_casc_plugin_configure_result: "{{ (_jenkins_casc_plugin_configure_result.output | regex_replace('^Result:\\s*(.*)\\n*$', '\\1') | from_json) }}"
+
+- name: "configure : fail when configuration throws exception."
+  fail:
+    msg:
+      - Exception thrown during applying of configuration, check your configuration!
+      - "{{ _jenkins_casc_plugin_configure_result.msg }}"
+  when: _jenkins_casc_plugin_configure_result.failed == true
+

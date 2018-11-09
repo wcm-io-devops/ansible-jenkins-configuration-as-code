@@ -18,8 +18,24 @@
  * #L%
  */
 
+
+import groovy.json.JsonOutput
 import io.jenkins.plugins.casc.ConfigurationAsCode
 
-ConfigurationAsCode.get().configure()
+String msg = "Success"
+Boolean failed = false
 
-return true
+try {
+  ConfigurationAsCode.get().configure()
+} catch (Exception ex) {
+  // set failed to yes
+  failed = true
+  msg = ex.toString()
+}
+
+def json = JsonOutput.toJson([
+  failed: failed,
+  msg: msg
+])
+
+return json.toString()
