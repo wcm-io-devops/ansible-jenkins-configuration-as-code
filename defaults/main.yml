@@ -28,11 +28,8 @@ jenkins_casc_jenkins_base_url: "http://{{ jenkins_casc_jenkins_hostname }}:{{ je
 # Path to the jenkins casc directory containing the yaml files for configuration
 jenkins_casc_config_path: "/var/lib/jenkins/jcasc"
 
-# Config files to upload
+# Config files/templates to upload
 jenkins_casc_config_fileglobs: []
-
-# Template files to upload
-jenkins_casc_config_templateglobs: []
 
 # Controls if files that existing files in the 'jenkins_casc_config_path' are deleted when they are not included in the 'jenkins_casc_config_fileglobs'
 # Deletion will only be executed when at least one file was uploaded to the 'jenkins_casc_config_path'
