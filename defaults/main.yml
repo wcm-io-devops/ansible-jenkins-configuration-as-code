@@ -1,0 +1,43 @@
+# Jenkins admin username
+jenkins_casc_admin_username: admin
+
+# Jenkins admin password
+jenkins_casc_admin_password: admin
+
+# Linux jenkins user
+jenkins_casc_owner: jenkins
+
+# Linux group of jenkins user
+jenkins_casc_group: "{{ jenkins_casc_owner }}"
+
+# Hostname of the jenkins instance
+jenkins_casc_jenkins_hostname: localhost
+
+# HTTP port of the jenkins instance
+jenkins_casc_jenkins_port: 8080
+
+# Url prefix of the jenkins instance, e.g. when running in tomcat
+jenkins_casc_jenkins_url_prefix: ""
+
+# Path to the jenkins update directory
+jenkins_casc_jenkins_update_dir: "{{ jenkins_casc_jenkins_home }}/updates"
+
+# The base url of the jenkins instance
+jenkins_casc_jenkins_base_url: "http://{{ jenkins_casc_jenkins_hostname }}:{{ jenkins_casc_jenkins_port }}{{ jenkins_casc_jenkins_url_prefix }}"
+
+# Path to the jenkins casc directory containing the yaml files for configuration
+jenkins_casc_config_path: "/var/lib/jenkins/jcasc"
+
+# Config files to upload
+jenkins_casc_config_fileglobs: []
+
+# Controls if files that existing files in the 'jenkins_casc_config_path' are deleted when they are not included in the 'jenkins_casc_config_fileglobs'
+# Deletion will only be executed when at least one file was uploaded to the 'jenkins_casc_config_path'
+jenkins_casc_config_unmanaged_delete: false
+
+# Plugins needed for configuration-as-code
+jenkins_casc_plugins_present:
+  - name: configuration-as-code
+    version: "1.3"
+  - name: configuration-as-code-support
+    version: "1.3"

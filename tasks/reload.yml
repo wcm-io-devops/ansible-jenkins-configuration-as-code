@@ -1,0 +1,10 @@
+- name: "reload : reload Jenkins configuration as code configuration"
+  jenkins_script:
+    script: "{{ lookup('file', 'files/groovy/jcasc/reload.groovy') }}"
+    user: "{{ jenkins_casc_admin_username }}"
+    password: "{{ jenkins_casc_admin_password }}"
+    url: "{{ jenkins_casc_jenkins_base_url }}"
+    args:
+      jcasc_path: "{{ jenkins_casc_config_path }}"
+  register: _jenkins_casc_upload_result
+  failed_when: '_jenkins_casc_upload_result.output != "Result: true\n"'

@@ -1,0 +1,25 @@
+- name: "Fail on undefined variables."
+  fail:
+    msg: "Variable '{{ item }}' is not defined"
+  when: item not in vars
+  with_items: []
+
+- include_tasks: upload.yml
+  tags:
+    - jcasc-upload
+
+- include_tasks: configure.yml
+  tags:
+    - jcasc-configure
+
+- name: "trigger reload handler when necessary"
+  command: /bin/true
+  changed_when: true
+  when:
+    # only trigger when configure result is false, since this will do a implicit reload
+    - (_jenkins_casc_plugin_configure_result | default({})).changed | default(false) == false
+    # and only trigger reload when upload files have changed or unmanaged files have been deleted
+    - (_jenkins_casc_upload_result | default({})).changed | default(false) or
+      (_jenkins_casc_unmanaged_result | default({})).changed | default(false)
+  notify:
+    - wcm_io_devops.jenkins_configuration_as_code reload

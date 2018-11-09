@@ -1,0 +1,7 @@
+dependencies:
+  # install plugins
+  - { role: wcm_io_devops.jenkins_plugins,
+      version: 1.0.0,
+      jenkins_plugins_present: "{{ jenkins_casc_plugins_present }}",
+      tags: "dependency"
+  }

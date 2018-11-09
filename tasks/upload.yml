@@ -1,0 +1,36 @@
+- name: "upload : create configuration dir"
+  file:
+    path: "{{ jenkins_casc_config_path }}"
+    state: directory
+    owner: "{{ jenkins_casc_owner }}"
+    group: "{{ jenkins_casc_group }}"
+    mode: 0770
+
+- name: "upload : upload files"
+  copy:
+    src: "{{ item }}"
+    owner: "{{ jenkins_casc_owner }}"
+    group: "{{ jenkins_casc_group }}"
+    dest: "{{ jenkins_casc_config_path }}"
+    mode: 0440
+  with_fileglob: "{{ jenkins_casc_config_fileglobs }}"
+  register: _jenkins_casc_upload_result
+
+- name: "upload : unmanaged."
+  block:
+    - name: "upload : unmanaged : find files in {{ jenkins_casc_config_path }}."
+      find:
+        paths: "{{ jenkins_casc_config_path }}"
+      register: _jenkins_casc_config_existing_files
+
+    - name: "upload : unmanaged : delete unmanaged files."
+      file:
+        path: "{{ item }}"
+        state: absent
+        # build list of uploaded and found file paths and delete the difference
+      with_items: "{{ _jenkins_casc_config_existing_files.files | map(attribute='path') | list | difference( _jenkins_casc_upload_result.results | map(attribute='dest') | list )}}"
+      register: _jenkins_casc_unmanaged_result
+
+  when:
+    - _jenkins_casc_upload_result.results | length > 0
+    - jenkins_casc_config_unmanaged_delete
