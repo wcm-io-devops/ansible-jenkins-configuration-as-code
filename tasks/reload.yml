@@ -6,17 +6,17 @@
     url: "{{ jenkins_casc_jenkins_base_url }}"
     args:
       jcasc_path: "{{ jenkins_casc_config_path }}"
-  register: _jenkins_casc_upload_result
+  register: _jenkins_casc_upload_files_result
   tags:
     - jcasc-reload
 
-- name: "reload : set _jenkins_casc_upload_result fact."
+- name: "reload : set _jenkins_casc_upload_files_result fact."
   set_fact:
-    _jenkins_casc_upload_result: "{{ (_jenkins_casc_upload_result.output | regex_replace('^Result:\\s*(.*)\\n*$', '\\1') | from_json) }}"
+    _jenkins_casc_upload_files_result: "{{ (_jenkins_casc_upload_files_result.output | regex_replace('^Result:\\s*(.*)\\n*$', '\\1') | from_json) }}"
 
 - name: "reload : fail when configuration throws exception."
   fail:
     msg:
       - Exception thrown during applying of configuration, check your configuration!
-      - "{{ _jenkins_casc_upload_result.msg }}"
-  when: _jenkins_casc_upload_result.failed == true
+      - "{{ _jenkins_casc_upload_files_result.msg }}"
+  when: _jenkins_casc_upload_files_result.failed == true

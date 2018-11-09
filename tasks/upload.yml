@@ -6,7 +6,7 @@
     group: "{{ jenkins_casc_group }}"
     mode: 0770
 
-- name: "upload : upload files"
+- name: "upload : upload files."
   copy:
     src: "{{ item }}"
     owner: "{{ jenkins_casc_owner }}"
@@ -14,7 +14,23 @@
     dest: "{{ jenkins_casc_config_path }}"
     mode: 0440
   with_fileglob: "{{ jenkins_casc_config_fileglobs }}"
-  register: _jenkins_casc_upload_result
+  register: _jenkins_casc_upload_files_result
+
+- name: "upload : fail when template would overwrite a config file."
+  fail:
+    msg: "The template {{ item }} would overwrite an normal config file! Please adjust the template or config filename."
+  with_fileglob: "{{ jenkins_casc_config_templateglobs }}"
+  when: item | basename in _jenkins_casc_upload_files_result.results | map(attribute='dest') | map('basename') | list
+
+- name: "upload : upload templates."
+  template:
+    src: "{{ item }}"
+    owner: "{{ jenkins_casc_owner }}"
+    group: "{{ jenkins_casc_group }}"
+    dest: "{{ jenkins_casc_config_path }}"
+    mode: 0440
+  with_fileglob: "{{ jenkins_casc_config_templateglobs }}"
+  register: _jenkins_casc_upload_templates_result
 
 - name: "upload : unmanaged."
   block:
@@ -28,9 +44,9 @@
         path: "{{ item }}"
         state: absent
         # build list of uploaded and found file paths and delete the difference
-      with_items: "{{ _jenkins_casc_config_existing_files.files | map(attribute='path') | list | difference( _jenkins_casc_upload_result.results | map(attribute='dest') | list )}}"
+      with_items: "{{ _jenkins_casc_config_existing_files.files | map(attribute='path') | list | difference(_jenkins_casc_upload_files_result.results | map(attribute='dest') | list | union(_jenkins_casc_upload_templates_result.results | map(attribute='dest') | list) )}}"
       register: _jenkins_casc_unmanaged_result
 
   when:
-    - _jenkins_casc_upload_result.results | length > 0
+    - _jenkins_casc_upload_files_result.results | length > 0 or _jenkins_casc_upload_templates_result.results | length > 0
     - jenkins_casc_config_unmanaged_delete
