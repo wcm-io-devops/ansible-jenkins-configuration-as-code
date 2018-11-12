@@ -11,6 +11,7 @@
 - include_tasks: configure.yml
   tags:
     - jcasc-configure
+  when: jenkins_casc_config_path_configure
 
 - name: "trigger reload handler when necessary."
   command: /bin/true
