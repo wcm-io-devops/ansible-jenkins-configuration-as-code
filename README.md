@@ -4,10 +4,10 @@ This role manages the installation, configuration and update of the
 [Jenkins Configuration as Code Plugin aka JCasC](https://github.com/jenkinsci/configuration-as-code-plugin).
 
 Tasks:
-* install JCasC plugin(s)
+* Install JCasC plugin(s)
 * Configure the path for the JCasC plugin
-* Deployment of configuration files
-* Reloading of JCasC configuration
+* Deployment of JCasC configuration files
+* Reloading of JCasC
 
 ## Requirements
 
