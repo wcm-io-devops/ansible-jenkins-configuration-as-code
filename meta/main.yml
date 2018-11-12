@@ -33,6 +33,15 @@ dependencies:
   # install plugins
   - { role: wcm_io_devops.jenkins_plugins,
       version: 1.0.0,
+      jenkins_plugins_admin_username: "{{ jenkins_casc_admin_username }}",
+      jenkins_plugins_admin_password: "{{ jenkins_casc_admin_password }}",
+      jenkins_plugins_jenkins_hostname: "{{ jenkins_casc_jenkins_hostname }}",
+      jenkins_plugins_jenkins_port: "{{ jenkins_casc_jenkins_port }}",
+      jenkins_plugins_jenkins_home: "{{ jenkins_casc_jenkins_home }}",
+      jenkins_plugins_jenkins_url_prefix: "{{ jenkins_casc_jenkins_url_prefix }}",
       jenkins_plugins_present: "{{ jenkins_casc_plugins_present }}",
-      tags: "dependency"
+      tags: [
+        "dependency",
+        "jenkins_configuration_as_code_plugins"
+      ]
   }

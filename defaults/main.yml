@@ -19,14 +19,14 @@ jenkins_casc_jenkins_port: 8080
 # Url prefix of the jenkins instance, e.g. when running in tomcat
 jenkins_casc_jenkins_url_prefix: ""
 
-# Path to the jenkins update directory
-jenkins_casc_jenkins_update_dir: "{{ jenkins_casc_jenkins_home }}/updates"
-
 # The base url of the jenkins instance
 jenkins_casc_jenkins_base_url: "http://{{ jenkins_casc_jenkins_hostname }}:{{ jenkins_casc_jenkins_port }}{{ jenkins_casc_jenkins_url_prefix }}"
 
 # Path to the jenkins casc directory containing the yaml files for configuration
-jenkins_casc_config_path: "/var/lib/jenkins/jcasc"
+jenkins_casc_jenkins_home: "/var/lib/jenkins"
+
+# Path to the jenkins casc directory containing the yaml files for configuration
+jenkins_casc_config_path: "{{ jenkins_casc_jenkins_home }}/jcasc"
 
 # Enables / Disabling the configuration of the configuration path
 jenkins_casc_config_path_configure: false
