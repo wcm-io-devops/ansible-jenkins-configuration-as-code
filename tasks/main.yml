@@ -18,3 +18,5 @@
       (_jenkins_casc_unmanaged_result | default({})).changed | default(false)
   notify:
     - wcm_io_devops.jenkins_configuration_as_code reload
+  tags:
+    - skip_ansible_lint
