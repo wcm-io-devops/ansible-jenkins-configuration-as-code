@@ -1,4 +1,4 @@
-- name: "reload : reload Jenkins configuration as code configuration"
+- name: "reload : reload Jenkins configuration as code configuration."
   jenkins_script:
     script: "{{ lookup('file', 'files/groovy/jcasc/reload.groovy') }}"
     user: "{{ jenkins_casc_admin_username }}"

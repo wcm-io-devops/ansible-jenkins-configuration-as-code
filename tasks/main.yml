@@ -1,9 +1,3 @@
-- name: "Fail on undefined variables."
-  fail:
-    msg: "Variable '{{ item }}' is not defined"
-  when: item not in vars
-  with_items: []
-
 - include_tasks: upload.yml
   tags:
     - jcasc-upload

@@ -1,4 +1,4 @@
-- name: "upload : create configuration dir"
+- name: "upload : create configuration dir."
   file:
     path: "{{ jenkins_casc_config_path }}"
     state: directory
