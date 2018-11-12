@@ -24,8 +24,6 @@ galaxy_info:
   galaxy_tags:
     - wcmio
     - jenkins
-    - configuration-as-code
-    - jenkins-configuration-as-code
     - jcasc
     - casc
 
