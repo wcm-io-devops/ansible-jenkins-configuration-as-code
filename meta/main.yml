@@ -1,3 +1,34 @@
+galaxy_info:
+  role_name: jenkins_configuration_as_code
+  author: Tobias Richter
+  description: Configures Jenkins configuration as code plugin (jcasc).
+  company: pro!vision
+  issue_tracker_url: https://wcm-io.atlassian.net
+  license: Apache
+  min_ansible_version: 2.5
+
+  platforms:
+  - name: EL
+    versions:
+    - all
+  - name: Debian
+    versions:
+    - all
+  - name: Ubuntu
+    versions:
+    - all
+  - name: GenericLinux
+    versions:
+    - all
+
+  galaxy_tags:
+    - wcmio
+    - jenkins
+    - configuration-as-code
+    - jenkins-configuration-as-code
+    - jcasc
+    - casc
+
 dependencies:
   # install plugins
   - { role: wcm_io_devops.jenkins_plugins,
