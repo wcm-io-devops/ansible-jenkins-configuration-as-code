@@ -9,7 +9,7 @@
       - "Found duplicate file(s) to deploy! Please ensure that the filenames are unique, otherwise unexpected result may occur!"
       - "Complete file list: "
       - "{{ _jenkins_casc_found_config_files }}"
-  when: _jenkins_casc_found_config_files | map('basename') | list != _jenkins_casc_found_config_files | map('basename') | list | unique
+  when: _jenkins_casc_found_config_files | default({}) | map('basename') | list != _jenkins_casc_found_config_files | default({}) | map('basename') | list | unique
 
 - name: "upload : create configuration dir."
   file:
