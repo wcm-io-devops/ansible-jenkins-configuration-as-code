@@ -40,6 +40,7 @@ dependencies:
       jenkins_plugins_present: "{{ jenkins_casc_plugins_present }}",
       tags: [
         "dependency",
-        "jenkins_configuration_as_code_plugins"
+        "jenkins_configuration_as_code_plugins",
+        "wcm_io_devops.jenkins_plugins"
       ]
   }
