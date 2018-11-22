@@ -6,7 +6,7 @@
 - name: "Fail when '{{ jenkins_casc_config_path }}' does not exist."
   fail:
     msg: "No file or directory found with path '{{ jenkins_casc_config_path }}'. Ensure that the configuration is on the instance before calling this role."
-  when: jenkins_casc_config_path_result.stat.exists == false
+  when: not jenkins_casc_config_path_result.stat.exists
 
 - name: "configure : configure jcasc plugin and apply configuration."
   jenkins_script:

@@ -12,7 +12,7 @@
   changed_when: true
   when:
     # only trigger when configure result is false, since this will do a implicit reload
-    - (_jenkins_casc_plugin_configure_result | default({})).changed | default(false) == false
+    - not ((_jenkins_casc_plugin_configure_result | default({})).changed | default(false))
     # and only trigger reload when upload files have changed or unmanaged files have been deleted
     - (_jenkins_casc_upload_files_result | default({})).changed | default(false) or
       (_jenkins_casc_unmanaged_result | default({})).changed | default(false)
