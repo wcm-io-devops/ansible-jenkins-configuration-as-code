@@ -29,4 +29,4 @@
     msg:
       - Exception thrown during applying of configuration, check your configuration!
       - "{{ _jenkins_casc_plugin_configure_result.msg }}"
-  when: _jenkins_casc_plugin_configure_result.failed == true
+  when: _jenkins_casc_plugin_configure_result.failed
