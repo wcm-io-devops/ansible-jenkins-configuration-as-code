@@ -6,10 +6,12 @@
 - name: "upload : fail on overlapping file names."
   fail:
     msg:
-      - "Found duplicate file(s) to deploy! Please ensure that the filenames are unique, otherwise unexpected result may occur!"
+      - "Found duplicate file(s) to deploy!"
+      - "Please ensure that the filenames are unique, otherwise unexpected result may occur!"
       - "Complete file list: "
       - "{{ _jenkins_casc_found_config_files }}"
-  when: _jenkins_casc_found_config_files | default({}) | map('basename') | list != _jenkins_casc_found_config_files | default({}) | map('basename') | list | unique
+  when: _jenkins_casc_found_config_files | default({}) | map('basename') | list !=
+        _jenkins_casc_found_config_files | default({}) | map('basename') | list | unique
 
 - name: "upload : create configuration dir."
   file:
@@ -41,7 +43,8 @@
         path: "{{ item }}"
         state: absent
         # build list of uploaded and found file paths and delete the difference
-      with_items: "{{ _jenkins_casc_config_existing_files.files | map(attribute='path') | list | difference(_jenkins_casc_upload_files_result.results | map(attribute='dest') | list) }}"
+      with_items: "{{ _jenkins_casc_config_existing_files.files | map(attribute='path') | list
+                      | difference(_jenkins_casc_upload_files_result.results | map(attribute='dest') | list) }}"
       register: _jenkins_casc_unmanaged_result
 
   when:
