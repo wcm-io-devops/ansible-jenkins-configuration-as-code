@@ -41,6 +41,6 @@ jenkins_casc_config_unmanaged_delete: false
 # Plugins needed for configuration-as-code
 jenkins_casc_plugins_present:
   - name: configuration-as-code
-    version: "1.7"
+    version: "1.10"
   - name: configuration-as-code-support
-    version: "1.7"
+    version: "1.10"
