@@ -4,6 +4,7 @@
     user: "{{ jenkins_casc_admin_username }}"
     password: "{{ jenkins_casc_admin_password }}"
     url: "{{ jenkins_casc_jenkins_base_url }}"
+    timeout: "{{ jenkins_casc_script_timeout }}"
     args:
       jcasc_path: "{{ jenkins_casc_config_path }}"
   register: _jenkins_casc_upload_files_result

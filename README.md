@@ -75,6 +75,10 @@ changed the configuration will be reloaded.
 Controls if files that existing files in the 'jenkins_casc_config_path' are deleted when they are not included in the 'jenkins_casc_config_fileglobs'.
 Deletion will only be executed when at least one file was uploaded to the 'jenkins_casc_config_path'.
 
+    jenkins_casc_script_timeout: 60
+
+The timeout for jenkins_script tasks in seconds.
+
     jenkins_casc_plugins_present:
       - name: configuration-as-code
         version: "1.3"
