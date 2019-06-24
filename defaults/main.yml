@@ -43,7 +43,9 @@ jenkins_casc_script_timeout: 60
 
 # Plugins needed for configuration-as-code
 jenkins_casc_plugins_present:
+  # do not update until job-dsl is 1.73+
   - name: configuration-as-code
-    version: "1.11"
+    version: "1.13"
+  # do not update until job-dsl is 1.73+
   - name: configuration-as-code-support
-    version: "1.11"
+    version: "1.13"
