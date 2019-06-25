@@ -30,7 +30,7 @@ galaxy_info:
 dependencies:
   # install plugins
   - { role: wcm_io_devops.jenkins_plugins,
-      version: 1.1.0,
+      version: 1.2.1,
       jenkins_plugins_admin_username: "{{ jenkins_casc_admin_username }}",
       jenkins_plugins_admin_password: "{{ jenkins_casc_admin_password }}",
       jenkins_plugins_jenkins_hostname: "{{ jenkins_casc_jenkins_hostname }}",
