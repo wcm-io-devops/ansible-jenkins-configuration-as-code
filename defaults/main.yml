@@ -49,3 +49,5 @@ jenkins_casc_plugins_present:
   # do not update until job-dsl is 1.73+
   - name: configuration-as-code-support
     version: "1.13"
+  - name: configuration-as-code-groovy
+    version: "1.1"
