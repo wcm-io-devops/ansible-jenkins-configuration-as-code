@@ -22,12 +22,12 @@
   register: _jenkins_casc_plugin_configure_result
   failed_when:
   changed_when: (_jenkins_casc_plugin_configure_result.output
-                | regex_replace('^Result:\\s*(.*)\\n*$', '\\1') | from_json).changed
+                | regex_replace('\\s*Result:\\s*(.*)\\n*$', '\\1') | from_json).changed
 
 - name: "configure : set _jenkins_casc_plugin_configure_result fact."
   set_fact:
     _jenkins_casc_plugin_configure_result:
-      "{{ (_jenkins_casc_plugin_configure_result.output | regex_replace('^Result:\\s*(.*)\\n*$', '\\1') | from_json) }}"
+      "{{ (_jenkins_casc_plugin_configure_result.output | regex_replace('\\s*Result:\\s*(.*)\\n*$', '\\1') | from_json) }}"
 
 - name: "configure : fail when configuration throws exception."
   fail:
