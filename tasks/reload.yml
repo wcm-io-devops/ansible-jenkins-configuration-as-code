@@ -14,7 +14,7 @@
 - name: "reload : set _jenkins_casc_upload_files_result fact."
   set_fact:
     _jenkins_casc_upload_files_result:
-      "{{ (_jenkins_casc_upload_files_result.output | regex_replace('^Result:\\s*(.*)\\n*$', '\\1') | from_json) }}"
+      "{{ (_jenkins_casc_upload_files_result.output | regex_replace('\\s*Result:\\s*(.*)\\n*$', '\\1') | from_json) }}"
 
 - name: "reload : fail when configuration throws exception."
   fail:
