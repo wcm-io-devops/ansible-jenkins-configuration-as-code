@@ -44,7 +44,7 @@ jenkins_casc_script_timeout: 60
 # Plugins needed for configuration-as-code
 jenkins_casc_plugins_present:
   - name: configuration-as-code
-    version: "1.25"
+    version: "1.26"
   - name: configuration-as-code-support
     version: "1.18"
   - name: configuration-as-code-groovy
