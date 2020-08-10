@@ -44,11 +44,11 @@ jenkins_casc_script_timeout: 60
 # Plugins needed for configuration-as-code
 jenkins_casc_plugins_present:
   - name: configuration-as-code
-    version: "1.39"
+    version: "1.43"
   - name: configuration-as-code-groovy
     version: "1.1"
   - name: snakeyaml-api
-    version: "1.26.1"
+    version: "1.26.4"
 
 # Plugins no longer needed for configuration-as-code
 jenkins_casc_plugins_absent:
