@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/wcm-io-devops/ansible-jenkins-configuration-as-code.svg?branch=master)](https://travis-ci.org/wcm-io-devops/ansible-jenkins-configuration-as-code)
+
 # wcm_io_devops.jenkins_configuration_as_code
 
 This role manages the installation, configuration and update of the
@@ -11,7 +13,7 @@ Tasks:
 
 ## Requirements
 
-This role requires Ansible 2.5 or higher and a running Jenkins on the
+This role requires Ansible 2.7 or higher and a running Jenkins on the
 target instance.
 
 ## Role Variables
