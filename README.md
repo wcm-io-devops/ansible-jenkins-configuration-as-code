@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/wcm-io-devops/ansible-jenkins-configuration-as-code.svg?branch=master)](https://travis-ci.org/wcm-io-devops/ansible-jenkins-configuration-as-code)
+[![Build Status](https://travis-ci.com/wcm-io-devops/ansible-jenkins-configuration-as-code.svg?branch=master)](https://travis-ci.com/wcm-io-devops/ansible-jenkins-configuration-as-code)
 
 # wcm_io_devops.jenkins_configuration_as_code
 
