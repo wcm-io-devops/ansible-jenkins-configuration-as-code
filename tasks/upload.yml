@@ -1,3 +1,4 @@
+---
 - name: "upload : calculate files to upload order to check that no files exist with overlapping names."
   set_fact:
     _jenkins_casc_found_config_files: "{{ _jenkins_casc_found_config_files | default([]) + [item] }}"

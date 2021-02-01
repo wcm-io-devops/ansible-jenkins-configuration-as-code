@@ -1,3 +1,4 @@
+---
 - include_tasks: upload.yml
   tags:
     - jcasc-upload

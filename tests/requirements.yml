@@ -1,2 +1,3 @@
+---
 - name: wcm_io_devops.jenkins_plugins
   version: master
