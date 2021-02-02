@@ -1,3 +1,4 @@
+---
 - name: "configure : check if '{{ jenkins_casc_config_path }}' exists."
   stat:
     path: "{{ jenkins_casc_config_path }}"
