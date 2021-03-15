@@ -1,6 +1,7 @@
 ---
 galaxy_info:
   role_name: jenkins_configuration_as_code
+  namespace: wcm_io_devops
   author: Tobias Richter
   description: Configures Jenkins configuration as code plugin (jcasc).
   company: pro!vision
