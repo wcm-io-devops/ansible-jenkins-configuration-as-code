@@ -57,3 +57,17 @@ jenkins_casc_plugins_present:
 # Plugins no longer needed for configuration-as-code
 jenkins_casc_plugins_absent:
   - name: configuration-as-code-support
+
+# Folder where the credentials will be stored on the master
+# Path will be configured in environment variable SECRETS
+jenkins_casc_secrets_dir: /var/jenkins_secrets
+
+# Controls if the role will delete existing but not defined credentials from jenkins_casc_secrets_dir
+# Deletion will only be executed when at least one secret was uploaded to the 'jenkins_casc_secrets_dir'
+jenkins_casc_secrets_unmanaged_delete: true
+
+# List of id/value credential pairs
+jenkins_casc_secrets: []
+# Example:
+# - id: credential-id
+#   value: credential-value

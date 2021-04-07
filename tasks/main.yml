@@ -1,4 +1,9 @@
 ---
+- include_tasks: secrets.yml
+  tags:
+    - jcasc-secrets
+  when: jenkins_casc_secrets | length > 0
+
 - include_tasks: upload.yml
   tags:
     - jcasc-upload

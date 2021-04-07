@@ -89,6 +89,23 @@ The timeout for jenkins_script tasks in seconds.
 
 Plugins needed for configuration-as-code.
 
+    jenkins_casc_secrets_dir: /var/jenkins_secrets
+
+Folder where the credentials will be stored on the master.
+Path will be configured in environment variable SECRETS.
+
+    jenkins_casc_secrets_unmanaged_delete: true
+
+Controls if the role will delete existing but not defined credentials from jenkins_casc_secrets_dir.
+Deletion will only be executed when at least one secret was uploaded to the 'jenkins_casc_secrets_dir'.
+
+    jenkins_casc_secrets: []
+    # Example:
+    # - id: credential-id
+    #   value: credential-value
+
+List of id/value credential pairs. The `id` can then be referenced in jcasc with `${id}` as value reference.
+
 ## Dependencies
 
 This role depends on the
