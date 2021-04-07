@@ -27,7 +27,7 @@ jenkins_casc_jenkins_base_url: "http://{{ jenkins_casc_jenkins_hostname }}:{{ je
 jenkins_casc_jenkins_home: "/var/lib/jenkins"
 
 # Path to the jenkins casc directory containing the yaml files for configuration
-jenkins_casc_config_path: "{{ jenkins_casc_jenkins_home }}/jcasc"
+jenkins_casc_config_path: "{{ jenkins_casc_jenkins_home }}/casc"
 
 # Enables / Disabling the configuration of the configuration path
 jenkins_casc_config_path_configure: false
