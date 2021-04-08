@@ -53,6 +53,8 @@ jenkins_casc_plugins_present:
     version: "1.1"
   - name: snakeyaml-api
     version: "1.27.0"
+  - name: job-dsl
+    version: "1.77"
 
 # Plugins no longer needed for configuration-as-code
 jenkins_casc_plugins_absent:
