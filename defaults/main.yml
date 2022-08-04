@@ -48,13 +48,13 @@ jenkins_casc_no_log: true
 # Plugins needed for configuration-as-code
 jenkins_casc_plugins_present:
   - name: configuration-as-code
-    version: "1414.v878271fc496f"
+    version: "1512.vb_79d418d5fc8"
   - name: configuration-as-code-groovy
     version: "1.1"
   - name: snakeyaml-api
-    version: "1.29.1"
+    version: "1.30.2-76.vc104f7ce9870"
   - name: job-dsl
-    version: "1.78.3"
+    version: "1.81"
 
 # Plugins no longer needed for configuration-as-code
 jenkins_casc_plugins_absent:
