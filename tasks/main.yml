@@ -14,7 +14,7 @@
   when: jenkins_casc_config_path_configure
 
 - name: "trigger reload handler when necessary."
-  command: /bin/true
+  ansible.builtin.command: /bin/true
   changed_when: true
   when:
     # only trigger when configure result is false, since this will do a implicit reload
