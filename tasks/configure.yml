@@ -1,11 +1,11 @@
 ---
 - name: "configure : check if '{{ jenkins_casc_config_path }}' exists."
-  stat:
+  ansible.builtin.stat:
     path: "{{ jenkins_casc_config_path }}"
   register: jenkins_casc_config_path_result
 
 - name: "Fail when '{{ jenkins_casc_config_path }}' does not exist."
-  fail:
+  ansible.builtin.fail:
     msg: >-
       No file or directory found with path '{{ jenkins_casc_config_path }}'.
       Ensure that the configuration is on the instance before calling this role."
@@ -26,12 +26,12 @@
                 | regex_replace('\\s*Result:\\s*(.*)\\n*$', '\\1') | from_json).changed
 
 - name: "configure : set _jenkins_casc_plugin_configure_result fact."
-  set_fact:
+  ansible.builtin.set_fact:
     _jenkins_casc_plugin_configure_result:
       "{{ (_jenkins_casc_plugin_configure_result.output | regex_replace('\\s*Result:\\s*(.*)\\n*$', '\\1') | from_json) }}"
 
 - name: "configure : fail when configuration throws exception."
-  fail:
+  ansible.builtin.fail:
     msg:
       - Exception thrown during applying of configuration, check your configuration!
       - "{{ _jenkins_casc_plugin_configure_result.msg }}"

@@ -1,11 +1,11 @@
 ---
 - name: "upload : calculate files to upload order to check that no files exist with overlapping names."
-  set_fact:
+  ansible.builtin.set_fact:
     _jenkins_casc_found_config_files: "{{ _jenkins_casc_found_config_files | default([]) + [item] }}"
   with_fileglob: "{{ jenkins_casc_config_fileglobs }}"
 
 - name: "upload : fail on overlapping file names."
-  fail:
+  ansible.builtin.fail:
     msg:
       - "Found duplicate file(s) to deploy!"
       - "Please ensure that the filenames are unique, otherwise unexpected result may occur!"
@@ -15,7 +15,7 @@
         _jenkins_casc_found_config_files | default({}) | map('basename') | list | unique
 
 - name: "upload : create configuration dir."
-  file:
+  ansible.builtin.file:
     path: "{{ jenkins_casc_config_path }}"
     state: directory
     owner: "{{ jenkins_casc_owner }}"
@@ -23,7 +23,7 @@
     mode: 0770
 
 - name: "upload : upload files/templates."
-  template:
+  ansible.builtin.template:
     src: "{{ item }}"
     owner: "{{ jenkins_casc_owner }}"
     group: "{{ jenkins_casc_group }}"
@@ -35,12 +35,12 @@
 - name: "upload : unmanaged."
   block:
     - name: "upload : unmanaged : find files in {{ jenkins_casc_config_path }}."
-      find:
+      ansible.builtin.find:
         paths: "{{ jenkins_casc_config_path }}"
       register: _jenkins_casc_config_existing_files
 
     - name: "upload : unmanaged : delete unmanaged files."
-      file:
+      ansible.builtin.file:
         path: "{{ item }}"
         state: absent
         # build list of uploaded and found file paths and delete the difference

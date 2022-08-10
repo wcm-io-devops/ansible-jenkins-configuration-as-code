@@ -1,20 +1,20 @@
 ---
-- include_tasks: secrets.yml
+- ansible.builtin.include_tasks: secrets.yml
   tags:
     - jcasc-secrets
   when: jenkins_casc_secrets | length > 0
 
-- include_tasks: upload.yml
+- ansible.builtin.include_tasks: upload.yml
   tags:
     - jcasc-upload
 
-- include_tasks: configure.yml
+- ansible.builtin.include_tasks: configure.yml
   tags:
     - jcasc-configure
   when: jenkins_casc_config_path_configure
 
 - name: "trigger reload handler when necessary."
-  command: /bin/true
+  ansible.builtin.command: /bin/true
   changed_when: true
   when:
     # only trigger when configure result is false, since this will do a implicit reload
